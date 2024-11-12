@@ -38,7 +38,7 @@ class App extends Component {
       {id:2, bookName:"The Da Vinci Code", writer:"Dan Brown"},
       {id:3, bookName:"The Alchemist", writer:"Paulo Coelho"},
     ],
-    // other : 'Another property!', 
+    showBooks : true,
   }
 
   // changeBookState = (newBookname) => {
@@ -74,6 +74,12 @@ class App extends Component {
     });
   }
 
+  toggleBooks = () => {
+    this.setState({
+      showBooks: !this.state.showBooks
+    })
+  };
+
   // constructor() {
   //   super();
   //   this.state = {};
@@ -91,17 +97,21 @@ class App extends Component {
     // const booksState = this.state.books;
     // console.log(booksState);
 
-    const books = this.state.books.map((book, index) => {
-      return (
-        <Book 
-          bookName={book.bookName}
-          writer={book.writer}
-          delete ={() => this.deletebookState(index)}
-          key={book.id}
-          inputName={(event) => this.changeWithInputState(event, index)} 
-        />
-      );
-    })
+    let books = null;
+    
+    if(this.state.showBooks) {
+      books = this.state.books.map((book, index) => {
+        return (
+          <Book 
+            bookName={book.bookName}
+            writer={book.writer}
+            delete ={() => this.deletebookState(index)}
+            key={book.id}
+            inputName={(event) => this.changeWithInputState(event, index)} 
+          />
+        );
+      })  
+    } 
 
     console.log(books);
 
@@ -113,6 +123,9 @@ class App extends Component {
     return(
       <div className="App">
       <h1 style={style}>Book List</h1>
+
+      <button onClick={this.toggleBooks}>Toggle Books</button>
+
       {/* <button onClick={ () => this.changeBookState("Nineteen Eighty-Four")}>Change State</button> */}
       {/* <input type='text' onChange={this.changeWithInputState} /> */}
       {/* <Book 
