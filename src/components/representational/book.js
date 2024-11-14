@@ -1,4 +1,4 @@
-import '../css/book.css';
+import '../../css/book.css';
 import React from "react";
 
 
