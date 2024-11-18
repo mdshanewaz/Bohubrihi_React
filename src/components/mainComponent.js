@@ -3,10 +3,14 @@ import BookList from "./lists/bookList";
 import bookList from "../assets/bookList";
 
 class MainComponent extends Component {
-    // State
-  state = {
-    books : bookList,
-    showBooks : true,
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      books : bookList,
+      showBooks : true,
+    }
+    console.log("MainComponent constructor!");
   }
 
   changeWithInputState = (event, index) => {
@@ -36,7 +40,16 @@ class MainComponent extends Component {
     })
   };
 
+  componentWillUnmount() {
+    console.log("MainComponent ComponentWillMount");
+  }
+
+  componentDidMount() {
+    console.log("MainComponent ComponentDidMount");
+  }
+
   render() {
+    console.log("MainComponent render");
     const style = {
       border: '1px solid red',
       borderRadius : '5px',
